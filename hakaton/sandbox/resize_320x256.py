@@ -12,7 +12,9 @@ if __name__ == '__main__':
 
     files = list(
         reduce(lambda a, b: list(a) + list(b),
-               [glob.iglob(os.path.join(directory, "**", "*.jpg"), recursive=True) for directory in ['datasets/Training', 'datasets/Validation']])
+               [glob.iglob(os.path.join(directory, "**", "*.jpg"), recursive=True) for directory in [
+                   '/home/mtkaleta/datasets/Training', '/home/mtkaleta/datasets/Validation'
+               ]])
     )
 
     output_directory_base = 'ds320x256'
