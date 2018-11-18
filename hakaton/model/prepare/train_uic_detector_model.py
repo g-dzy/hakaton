@@ -12,6 +12,7 @@ EPOCHS = 1
 IS_SHUFFLE = True
 VALIDATION_SPLIT = 0.2
 TRAIN_LABEL = Columns.IS_UIC.value
+OUT_DIR = "output/uicdetector"
 
 
 def main():
@@ -20,7 +21,7 @@ def main():
     img_reader = ImgReader()
     corpus = Corpus(img_reader, META_FILE_PATH, FILES_ROOT_DIR)
     model_generator = ModelGenerator(model, corpus, img_reader)
-    model_generator.generate(TRAIN_LABEL, IS_SHUFFLE, epochs=EPOCHS, batch_size=BATCH_SIZE,
+    model_generator.generate(TRAIN_LABEL, OUT_DIR, IS_SHUFFLE, epochs=EPOCHS, batch_size=BATCH_SIZE,
                              validation_split=VALIDATION_SPLIT)
 
 

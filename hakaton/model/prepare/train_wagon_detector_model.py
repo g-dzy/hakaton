@@ -6,6 +6,7 @@ from hakaton.model.wagon_detector_model import WagonDetectorModel
 
 META_FILE_PATH = "dataset/transformed/320x256_flatten/Training/selected/0_0_0_metadata_extended.csv"
 FILES_ROOT_DIR = "dataset/transformed/320x256_flatten/Training/selected"
+OUT_DIR = "output/wagondetector"
 
 BATCH_SIZE = 8
 EPOCHS = 1
@@ -20,7 +21,7 @@ def main():
     img_reader = ImgReader()
     corpus = Corpus(img_reader, META_FILE_PATH, FILES_ROOT_DIR)
     model_generator = ModelGenerator(model, corpus, img_reader)
-    model_generator.generate(TRAIN_LABEL, IS_SHUFFLE, epochs=EPOCHS, batch_size=BATCH_SIZE,
+    model_generator.generate(TRAIN_LABEL, OUT_DIR, IS_SHUFFLE, epochs=EPOCHS, batch_size=BATCH_SIZE,
                              validation_split=VALIDATION_SPLIT)
 
 
