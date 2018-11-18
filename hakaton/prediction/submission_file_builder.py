@@ -20,7 +20,8 @@ class SubmissionFileBuilder:
     def __init__(self, team_name: str):
 
         self._logger = getLogger()
-        assert self._team_name
+        assert team_name
+        self._team_name = team_name
 
         columns = [
             SubmissionFileColumns.TEAM_NAME,

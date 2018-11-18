@@ -17,11 +17,13 @@ class FileNameParser:
     TRAIN_ORIENTATION_POSITION = 2
     FRAME_NUMBER_POSITION = 3
 
-    def parse(self, file_name: str):
-
-        file_name = str(os.path.basename(file_name).split('.')[0])
+    def parse(self, file_path: str):
+        file_name_with_extension = os.path.basename(file_path)
+        file_name = str(file_name_with_extension.split('.')[0])
         meta = file_name.split(self.SEPARATOR)
         train_number = int(meta[self.TRAIN_NUMBER_POSITION])
         train_orientation = str(meta[self.TRAIN_ORIENTATION_POSITION])
         frame_number = int(meta[self.FRAME_NUMBER_POSITION])
-        return FileMeta(file_name, train_number, train_orientation, frame_number)
+        return FileMeta(
+            file_path, train_number, train_orientation, frame_number
+        )

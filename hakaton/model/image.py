@@ -11,9 +11,11 @@ class Image:
 
     def apply_transformation(self, transformation: ImageTransformation):
         self._data = transformation.apply(self._data)
+        return self
 
     def apply_lambda_transformation(self, transformation_func):
         self._data = transformation_func(self._data)
+        return self
 
     @property
     def ndarray(self):
