@@ -17,7 +17,8 @@ class PredictionPipeline:
                  data_root_directory: str,
                  uic_presence_model_loader: ModelLoader,
                  wagon_number_model_loader: ModelLoader,
-                 uic_label_model_loader: ModelLoader
+                 uic_label_model_loader: ModelLoader,
+                 output_directory: str
                  ):
 
         self._logger = getLogger()
@@ -26,6 +27,7 @@ class PredictionPipeline:
         self._files_meta_parser = FileNameParser()
         self._resize_transformation = Resize(320, 256)
         self._submission_file_builder = SubmissionFileBuilder(team_name)
+        self._output_directory = output_directory
 
         # TODO: standard scaler if location will be detected
         self._uic_presence_model = uic_presence_model_loader.load()
@@ -38,7 +40,7 @@ class PredictionPipeline:
             train_id = os.path.basename(train_directory).split('_')[-1]
             self._logger.info('Starting pipeline for train %s' % train_id)
             self._logger.info('Listing directories of train %s' % train_id)
-            files = glob.glob(train_directory, recursive=True)
+            files = glob.glob(os.path.join(train_directory, "**", "*.jpg"))
             self._logger.info('Parsing files metadata of train %s' % train_id)
             files = [self._files_meta_parser.parse(f) for f in files]
             ordered_files = sorted(files, key=lambda f: f.frame_number)
@@ -53,6 +55,7 @@ class PredictionPipeline:
             uic_code_labels = self._uic_label_model.predict(ndarrays)
             train_output = zip(files, wagon_numbers, uic_code_presences, uic_code_labels)
             self._update_submission_file(list(train_output))
+        self._submission_file_builder.to_csv(os.path.join(self._output_directory, 'submission.csv'))
 
     def _preprocess(self, files) -> List[Image]:
 
