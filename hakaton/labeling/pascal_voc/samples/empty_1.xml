@@ -1,0 +1,14 @@
+<annotation verified="yes">
+	<folder>empty_1_directory</folder>
+	<filename>empty_1.jpg</filename>
+	<path>empty_1_path</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>320</width>
+		<height>256</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+</annotation>
