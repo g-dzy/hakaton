@@ -5,7 +5,7 @@ from hakaton.model.image import Image
 
 class TestImage(TestCase):
 
-    SAMPLE_PATH = 'sample_image.jpg'
+    SAMPLE_PATH = 'hakaton/model/tests/sample_image.jpg'
 
     def test_if_image_is_read(self):
 
