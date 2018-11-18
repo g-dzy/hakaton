@@ -27,11 +27,16 @@ This tool is able to return data in two formats: yolo and pascal voc. We've used
 
 We wanted to create three different solutions of three challenges:
 
-1. For wagon detection, we use a rather shallow CNN classifier which detects:
+1. For wagon detection, we use a rather shallow DNN classifier which detects:
 a) empty image
 b) gap between subsequent cars
 c) beginning / end of the train
 
+Proposed Model for detection gaps between wagons is located inside package: "hakaton/model/wagon_detector_model.py".
+
 2. For UIC code detection, we've ended up with a similar approach, although the plan was to use the YOLO network architecture and detect the boundaries between the UIC code is located. Such boundaries could be used to feed data into the third model.
+
+We also try more simple solution. We trained classificator which try recognise pictures with uic code.
+Model located inside package "hakaton/model/uic_detector_model.py".
 
 3. For UIC code attribution, we wanted to perform a OCR based on the window chosen by the 2nd model. Unfortunately, the 2nd approach has failed ;).

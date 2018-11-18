@@ -6,8 +6,8 @@ from tensorflow.python.keras.layers import Dense, BatchNormalization, Dropout, A
 
 
 class UicDetectorModel:
-    def __init__(self, metrics: List[str]):
-        self._metrics = metrics or list()
+    def __init__(self, metrics: List[str] = None):
+        self._metrics = metrics or ["accuracy"]
         self._model_structure = None
 
     def model(self):
